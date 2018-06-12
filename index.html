@@ -13,26 +13,48 @@
   <div clas="container">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape_add_to_mongo" role="button">Scrape New Data</a></p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
       
     <!-- mars data -->
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <table class = "table">
-        {% for items in mars_data %}
-        <tr>
-          <td>{{ items.Title }}</td>
-          <td>{{ items.Description }}</td>
-          <td>{{items.Featured Image}} </td>
-          <td> {{item.Mars Weather}} </td>
-          <td>{{ item.Mars Table}}  </td>
-          <td>{{ item.Mars Images }}</td>
-        </tr>
-        {% endfor %}
-      </table>
-        </div>
-        
+          <div> 
+              <ul style="list-style: none;">
+               <li> <h2><bold>Latest Mars News</bold></h2></li>
+                <li><h4><bold>{{ dict.Title }}</bold></h4></li>
+                <li>{{ dict.Description }}</li>
+                <br>
+                <li><h2><bold>Current Weather on Mars</bold></h2></li>
+                <li>{{ dict.Weather }}</li>
+                <br>
+                <li><h2><bold>Mars Facts</bold></h2></li>
+                <li><table>{{dict.table|safe}}</table></li>
+                <li><h2><bold>Featured Mars Image</bold></h2>                
+                <img src= {{dict.featured_image}} width = '700' height = '700'/></li>
+          
+                <li> <h2><center>Mars Hemispheres</center></h2></li>
+               <li>
+               <table>
+                 
+                  {% for item in dict.image_dict%}
+                    <tr>
+                    <td style:"width:25%">           
+                  <img src = {{item.image_url}} width = '500' height = '500'/>
+                  <label>{{item.Hemisphere_title}}</label>
+                </td>
+                </tr>
+                {% endfor %}
+               
+                      
+                    </table>
+                  </li>
+                            
+                
+                 
+               </ul>
+            </div>             
+       
         
       </div>
     </div>
